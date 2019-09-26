@@ -4,7 +4,7 @@
   "description": "batch 11 backend quikstart",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app",
+    "start": "node",
     "server": "nodemon app"
   },
   "author": "Arfandy",
