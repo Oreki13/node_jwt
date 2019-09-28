@@ -24,10 +24,11 @@ module.exports = {
   },
 
   deleteCart: (req, res) => {
+    const idItem = req.params.id_item;
     modelCart
       .deleteCart(req.params.id_user, req.params.id_item)
       .then(response => {
-        formResponse.getResult(res, 200, response);
+        formResponse.getResult(res, 200, response, idItem);
       })
       .catch(err => {
         console.log(err);

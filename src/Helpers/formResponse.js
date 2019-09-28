@@ -84,7 +84,7 @@ module.exports = {
     };
     res.json(formResponse);
   },
-  getResult: (res, status, result) => {
+  getResult: (res, status, result, idItem) => {
     if (result.length == 0) {
       const formResponse = {
         status: 200,
@@ -92,11 +92,9 @@ module.exports = {
       };
       res.json(formResponse, 200);
     } else {
-      const resultLength = "Data Ditemukan " + result.length;
-
       const formResponse = {
         status,
-        massage: resultLength,
+        massage: idItem,
 
         result
       };

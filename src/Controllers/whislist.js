@@ -15,7 +15,7 @@ const wishlist = {
 
   postWishlist: (req, res) => {
     wishlistModel
-      .postWishlist(req.params.id_user, req.params.id_course)
+      .postWishlist(req.params.id_user, req.params.id_item)
       .then(response => {
         responses.getResult(res, 200, response);
       })
@@ -25,10 +25,12 @@ const wishlist = {
   },
 
   deleteWishlist: (req, res) => {
+    const idItem = req.params.id_item;
+    const idUser = req.params.id_user;
     wishlistModel
-      .deleteWishlist(req.params.id_user, req.params.id_course)
+      .deleteWishlist(idUser, idItem)
       .then(response => {
-        responses.getResult(res, 200, response);
+        responses.getResult(res, 200, response, idItem);
       })
       .catch(err => {
         console.log(err);
