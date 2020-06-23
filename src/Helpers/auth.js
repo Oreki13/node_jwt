@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const MiscHelper = require("../Helpers/helpers");
+const Models = require('../Models/users')
 
 const allowedAccess = process.env.REQUEST_HEADERS;
 
@@ -29,20 +30,31 @@ module.exports = {
 
   accesstoken: (req, res, next) => {
     const secretKey = process.env.SECRET_KEY;
-    const accessToken = req.token;
+    const accessToken = req.params.token;
     const userToken = req.headers["x-control-user"];
+
+    console.log(accessToken);
+    console.log(userToken);
+
 
     jwt.verify(accessToken, secretKey, (err, decoded) => {
       if (err && err.name === "TokenExpiredError")
-        return MiscHelper.response(res, null, 401, "Token expired");
+        return MiscHelper.response(res, null, 200, "Token expired");
 
       if (err && err.name === "JsonWebTokenError")
-        return MiscHelper.response(res, null, 401, "Invalid Token");
+        return MiscHelper.response(res, null, 200, "Invalid Token");
 
       if (parseInt(userToken) !== parseInt(decoded.userid))
-        return MiscHelper.response(res, null, 401, "Invalid User Token");
+        return MiscHelper.response(res, null, 200, "Invalid User Token");
 
       console.log("Access Granted!");
+      // Models.getById(parseInt(decoded.userid)).then(result => {
+      //   return MiscHelper.response(res, result, 200)
+      //   console.log(result);
+
+      // }).catch(err =>
+      //   console.log(err)
+      // )
       next();
     });
   }

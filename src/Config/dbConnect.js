@@ -4,7 +4,7 @@ const mysql = require("mysql");
 const dbConfig = mysql.createConnection({
   host: process.env.DB_HOST || "remotemysql.com",
   user: process.env.DB_USER || "uCVrrTvHJf",
-  password: process.env.DB_PASSWORD || "OS6klfusg4",
+  password: process.env.DB_PASSWORD || "",
   database: process.env.DB_DATABASE || "uCVrrTvHJf"
 });
 
