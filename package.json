@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "batch 11 backend quikstart",
+  "description": "auth",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
